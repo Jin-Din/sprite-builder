@@ -1,4 +1,4 @@
-﻿namespace CssSprite
+namespace CssSprite
 {
     partial class FormMain
     {
@@ -52,6 +52,12 @@
             this.buttonHRange = new System.Windows.Forms.Button();
             this.buttonMakeBigImageCss = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
+            this.chkOutListImg = new System.Windows.Forms.CheckBox();
+            this.panelPhone = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.linkLabelLess = new System.Windows.Forms.LinkLabel();
+            this.linkLabelSass = new System.Windows.Forms.LinkLabel();
+            this.linkLabelHelp = new System.Windows.Forms.LinkLabel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -59,24 +65,30 @@
             this.txtBase64Sass = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.txtBase64Css = new System.Windows.Forms.TextBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.txtJson = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelImages = new System.Windows.Forms.Panel();
-            this.panelPhone = new System.Windows.Forms.Panel();
-            this.linkLabelHelp = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.linkLabelSass = new System.Windows.Forms.LinkLabel();
-            this.linkLabelLess = new System.Windows.Forms.LinkLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chksass = new System.Windows.Forms.CheckBox();
+            this.chkcssless = new System.Windows.Forms.CheckBox();
+            this.chksass_base64 = new System.Windows.Forms.CheckBox();
+            this.chkcss_base64 = new System.Windows.Forms.CheckBox();
+            this.chkjson = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelBottom.SuspendLayout();
+            this.panelPhone.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panelPhone.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -119,7 +131,7 @@
             this.txtSass.Name = "txtSass";
             this.txtSass.ReadOnly = true;
             this.txtSass.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtSass.Size = new System.Drawing.Size(979, 101);
+            this.txtSass.Size = new System.Drawing.Size(955, 90);
             this.txtSass.TabIndex = 11;
             this.txtSass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSass_KeyDown);
             // 
@@ -176,7 +188,7 @@
             this.txtCss.Name = "txtCss";
             this.txtCss.ReadOnly = true;
             this.txtCss.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtCss.Size = new System.Drawing.Size(979, 101);
+            this.txtCss.Size = new System.Drawing.Size(955, 101);
             this.txtCss.TabIndex = 19;
             this.txtCss.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCss_KeyDown);
             // 
@@ -201,12 +213,11 @@
             this.panelTop.Controls.Add(this.buttonBrowse);
             this.panelTop.Controls.Add(this.buttonVRange);
             this.panelTop.Controls.Add(this.buttonHRange);
-            this.panelTop.Controls.Add(this.buttonMakeBigImageCss);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
             this.panelTop.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
-            this.panelTop.Size = new System.Drawing.Size(1002, 54);
+            this.panelTop.Size = new System.Drawing.Size(984, 54);
             this.panelTop.TabIndex = 21;
             // 
             // btnUpdate
@@ -271,7 +282,7 @@
             this.btn.FlatAppearance.BorderSize = 0;
             this.btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn.Image = global::CssSprite.Properties.Resources.question;
-            this.btn.Location = new System.Drawing.Point(939, 10);
+            this.btn.Location = new System.Drawing.Point(912, 9);
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(55, 40);
             this.btn.TabIndex = 21;
@@ -302,7 +313,7 @@
             this.buttonVRange.ForeColor = System.Drawing.Color.White;
             this.buttonVRange.Image = global::CssSprite.Properties.Resources.vertical;
             this.buttonVRange.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonVRange.Location = new System.Drawing.Point(529, 9);
+            this.buttonVRange.Location = new System.Drawing.Point(555, 9);
             this.buttonVRange.Name = "buttonVRange";
             this.buttonVRange.Size = new System.Drawing.Size(134, 40);
             this.buttonVRange.TabIndex = 4;
@@ -318,7 +329,7 @@
             this.buttonHRange.ForeColor = System.Drawing.Color.White;
             this.buttonHRange.Image = global::CssSprite.Properties.Resources.horizontal;
             this.buttonHRange.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonHRange.Location = new System.Drawing.Point(669, 9);
+            this.buttonHRange.Location = new System.Drawing.Point(695, 9);
             this.buttonHRange.Name = "buttonHRange";
             this.buttonHRange.Size = new System.Drawing.Size(115, 40);
             this.buttonHRange.TabIndex = 5;
@@ -329,13 +340,14 @@
             // buttonMakeBigImageCss
             // 
             this.buttonMakeBigImageCss.BackColor = System.Drawing.Color.RoyalBlue;
+            this.buttonMakeBigImageCss.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonMakeBigImageCss.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMakeBigImageCss.ForeColor = System.Drawing.Color.White;
             this.buttonMakeBigImageCss.Image = global::CssSprite.Properties.Resources.download;
             this.buttonMakeBigImageCss.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonMakeBigImageCss.Location = new System.Drawing.Point(790, 9);
+            this.buttonMakeBigImageCss.Location = new System.Drawing.Point(828, 6);
             this.buttonMakeBigImageCss.Name = "buttonMakeBigImageCss";
-            this.buttonMakeBigImageCss.Size = new System.Drawing.Size(145, 40);
+            this.buttonMakeBigImageCss.Size = new System.Drawing.Size(139, 60);
             this.buttonMakeBigImageCss.TabIndex = 9;
             this.buttonMakeBigImageCss.Text = "生成雪碧图";
             this.buttonMakeBigImageCss.UseVisualStyleBackColor = false;
@@ -343,6 +355,9 @@
             // 
             // panelBottom
             // 
+            this.panelBottom.Controls.Add(this.label4);
+            this.panelBottom.Controls.Add(this.panel2);
+            this.panelBottom.Controls.Add(this.chkOutListImg);
             this.panelBottom.Controls.Add(this.panelPhone);
             this.panelBottom.Controls.Add(this.tabControl);
             this.panelBottom.Controls.Add(this.txtDir);
@@ -352,11 +367,78 @@
             this.panelBottom.Controls.Add(this.txtName);
             this.panelBottom.Controls.Add(this.label5);
             this.panelBottom.Controls.Add(this.label2);
+            this.panelBottom.Controls.Add(this.buttonMakeBigImageCss);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(3, 311);
+            this.panelBottom.Location = new System.Drawing.Point(3, 414);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(1002, 231);
+            this.panelBottom.Size = new System.Drawing.Size(984, 274);
             this.panelBottom.TabIndex = 0;
+            // 
+            // chkOutListImg
+            // 
+            this.chkOutListImg.AutoSize = true;
+            this.chkOutListImg.Checked = true;
+            this.chkOutListImg.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOutListImg.Location = new System.Drawing.Point(828, 74);
+            this.chkOutListImg.Name = "chkOutListImg";
+            this.chkOutListImg.Size = new System.Drawing.Size(96, 16);
+            this.chkOutListImg.TabIndex = 26;
+            this.chkOutListImg.Text = "是否输出原图";
+            this.chkOutListImg.UseVisualStyleBackColor = true;
+            // 
+            // panelPhone
+            // 
+            this.panelPhone.Controls.Add(this.label3);
+            this.panelPhone.Controls.Add(this.linkLabelLess);
+            this.panelPhone.Controls.Add(this.linkLabelSass);
+            this.panelPhone.Controls.Add(this.linkLabelHelp);
+            this.panelPhone.Location = new System.Drawing.Point(106, 60);
+            this.panelPhone.Name = "panelPhone";
+            this.panelPhone.Size = new System.Drawing.Size(435, 28);
+            this.panelPhone.TabIndex = 22;
+            this.panelPhone.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(2, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "帮助：";
+            // 
+            // linkLabelLess
+            // 
+            this.linkLabelLess.AutoSize = true;
+            this.linkLabelLess.Location = new System.Drawing.Point(303, 9);
+            this.linkLabelLess.Name = "linkLabelLess";
+            this.linkLabelLess.Size = new System.Drawing.Size(77, 12);
+            this.linkLabelLess.TabIndex = 0;
+            this.linkLabelLess.TabStop = true;
+            this.linkLabelLess.Text = "Less变量合集";
+            this.linkLabelLess.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelLess_LinkClicked);
+            // 
+            // linkLabelSass
+            // 
+            this.linkLabelSass.AutoSize = true;
+            this.linkLabelSass.Location = new System.Drawing.Point(208, 9);
+            this.linkLabelSass.Name = "linkLabelSass";
+            this.linkLabelSass.Size = new System.Drawing.Size(77, 12);
+            this.linkLabelSass.TabIndex = 0;
+            this.linkLabelSass.TabStop = true;
+            this.linkLabelSass.Text = "Sass变量合集";
+            this.linkLabelSass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSass_LinkClicked);
+            // 
+            // linkLabelHelp
+            // 
+            this.linkLabelHelp.AutoSize = true;
+            this.linkLabelHelp.Location = new System.Drawing.Point(50, 9);
+            this.linkLabelHelp.Name = "linkLabelHelp";
+            this.linkLabelHelp.Size = new System.Drawing.Size(143, 12);
+            this.linkLabelHelp.TabIndex = 0;
+            this.linkLabelHelp.TabStop = true;
+            this.linkLabelHelp.Text = "手机端页面rem自适应脚本";
+            this.linkLabelHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelHelp_LinkClicked);
             // 
             // tabControl
             // 
@@ -364,10 +446,11 @@
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage3);
             this.tabControl.Controls.Add(this.tabPage4);
-            this.tabControl.Location = new System.Drawing.Point(6, 96);
+            this.tabControl.Controls.Add(this.tabPage5);
+            this.tabControl.Location = new System.Drawing.Point(6, 143);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(993, 133);
+            this.tabControl.Size = new System.Drawing.Size(969, 122);
             this.tabControl.TabIndex = 21;
             // 
             // tabPage1
@@ -376,7 +459,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(985, 107);
+            this.tabPage1.Size = new System.Drawing.Size(961, 96);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "sass代码";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -387,7 +470,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(985, 107);
+            this.tabPage2.Size = new System.Drawing.Size(961, 107);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "css/less代码";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -398,7 +481,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(985, 107);
+            this.tabPage3.Size = new System.Drawing.Size(961, 107);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "sass Base64代码";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -414,7 +497,7 @@
             this.txtBase64Sass.Name = "txtBase64Sass";
             this.txtBase64Sass.ReadOnly = true;
             this.txtBase64Sass.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtBase64Sass.Size = new System.Drawing.Size(979, 101);
+            this.txtBase64Sass.Size = new System.Drawing.Size(955, 101);
             this.txtBase64Sass.TabIndex = 12;
             this.txtBase64Sass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBase64Sass_KeyDown);
             // 
@@ -424,7 +507,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(985, 107);
+            this.tabPage4.Size = new System.Drawing.Size(961, 107);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "css Base64代码";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -440,9 +523,34 @@
             this.txtBase64Css.Name = "txtBase64Css";
             this.txtBase64Css.ReadOnly = true;
             this.txtBase64Css.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtBase64Css.Size = new System.Drawing.Size(979, 101);
+            this.txtBase64Css.Size = new System.Drawing.Size(955, 101);
             this.txtBase64Css.TabIndex = 12;
             this.txtBase64Css.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBase64Css_KeyDown);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.txtJson);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(961, 107);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "json配置";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // txtJson
+            // 
+            this.txtJson.BackColor = System.Drawing.Color.White;
+            this.txtJson.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtJson.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtJson.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtJson.Location = new System.Drawing.Point(3, 3);
+            this.txtJson.Multiline = true;
+            this.txtJson.Name = "txtJson";
+            this.txtJson.ReadOnly = true;
+            this.txtJson.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtJson.Size = new System.Drawing.Size(955, 101);
+            this.txtJson.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
@@ -457,8 +565,8 @@
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 237F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 545);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(990, 691);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -468,7 +576,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 63);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 242);
+            this.panel1.Size = new System.Drawing.Size(984, 345);
             this.panel1.TabIndex = 0;
             // 
             // panelImages
@@ -479,76 +587,105 @@
             this.panelImages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelImages.Location = new System.Drawing.Point(0, 0);
             this.panelImages.Name = "panelImages";
-            this.panelImages.Size = new System.Drawing.Size(1002, 242);
+            this.panelImages.Size = new System.Drawing.Size(984, 345);
             this.panelImages.TabIndex = 0;
             // 
-            // panelPhone
+            // panel2
             // 
-            this.panelPhone.Controls.Add(this.label3);
-            this.panelPhone.Controls.Add(this.linkLabelLess);
-            this.panelPhone.Controls.Add(this.linkLabelSass);
-            this.panelPhone.Controls.Add(this.linkLabelHelp);
-            this.panelPhone.Location = new System.Drawing.Point(106, 60);
-            this.panelPhone.Name = "panelPhone";
-            this.panelPhone.Size = new System.Drawing.Size(435, 28);
-            this.panelPhone.TabIndex = 22;
-            this.panelPhone.Visible = false;
+            this.panel2.Controls.Add(this.chkjson);
+            this.panel2.Controls.Add(this.chkcss_base64);
+            this.panel2.Controls.Add(this.chksass_base64);
+            this.panel2.Controls.Add(this.chkcssless);
+            this.panel2.Controls.Add(this.chksass);
+            this.panel2.Location = new System.Drawing.Point(106, 96);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(434, 41);
+            this.panel2.TabIndex = 27;
             // 
-            // linkLabelHelp
+            // chksass
             // 
-            this.linkLabelHelp.AutoSize = true;
-            this.linkLabelHelp.Location = new System.Drawing.Point(50, 9);
-            this.linkLabelHelp.Name = "linkLabelHelp";
-            this.linkLabelHelp.Size = new System.Drawing.Size(143, 12);
-            this.linkLabelHelp.TabIndex = 0;
-            this.linkLabelHelp.TabStop = true;
-            this.linkLabelHelp.Text = "手机端页面rem自适应脚本";
-            this.linkLabelHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelHelp_LinkClicked);
+            this.chksass.AutoSize = true;
+            this.chksass.Checked = true;
+            this.chksass.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chksass.Location = new System.Drawing.Point(4, 13);
+            this.chksass.Name = "chksass";
+            this.chksass.Size = new System.Drawing.Size(48, 16);
+            this.chksass.TabIndex = 0;
+            this.chksass.Text = "sass";
+            this.chksass.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // chkcssless
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "帮助：";
+            this.chkcssless.AutoSize = true;
+            this.chkcssless.Checked = true;
+            this.chkcssless.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkcssless.Location = new System.Drawing.Point(58, 13);
+            this.chkcssless.Name = "chkcssless";
+            this.chkcssless.Size = new System.Drawing.Size(72, 16);
+            this.chkcssless.TabIndex = 1;
+            this.chkcssless.Text = "css/less";
+            this.chkcssless.UseVisualStyleBackColor = true;
             // 
-            // linkLabelSass
+            // chksass_base64
             // 
-            this.linkLabelSass.AutoSize = true;
-            this.linkLabelSass.Location = new System.Drawing.Point(208, 9);
-            this.linkLabelSass.Name = "linkLabelSass";
-            this.linkLabelSass.Size = new System.Drawing.Size(77, 12);
-            this.linkLabelSass.TabIndex = 0;
-            this.linkLabelSass.TabStop = true;
-            this.linkLabelSass.Text = "Sass变量合集";
-            this.linkLabelSass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSass_LinkClicked);
+            this.chksass_base64.AutoSize = true;
+            this.chksass_base64.Checked = true;
+            this.chksass_base64.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chksass_base64.Location = new System.Drawing.Point(145, 13);
+            this.chksass_base64.Name = "chksass_base64";
+            this.chksass_base64.Size = new System.Drawing.Size(90, 16);
+            this.chksass_base64.TabIndex = 2;
+            this.chksass_base64.Text = "sass base64";
+            this.chksass_base64.UseVisualStyleBackColor = true;
             // 
-            // linkLabelLess
+            // chkcss_base64
             // 
-            this.linkLabelLess.AutoSize = true;
-            this.linkLabelLess.Location = new System.Drawing.Point(303, 9);
-            this.linkLabelLess.Name = "linkLabelLess";
-            this.linkLabelLess.Size = new System.Drawing.Size(77, 12);
-            this.linkLabelLess.TabIndex = 0;
-            this.linkLabelLess.TabStop = true;
-            this.linkLabelLess.Text = "Less变量合集";
-            this.linkLabelLess.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelLess_LinkClicked);
+            this.chkcss_base64.AutoSize = true;
+            this.chkcss_base64.Checked = true;
+            this.chkcss_base64.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkcss_base64.Location = new System.Drawing.Point(241, 13);
+            this.chkcss_base64.Name = "chkcss_base64";
+            this.chkcss_base64.Size = new System.Drawing.Size(84, 16);
+            this.chkcss_base64.TabIndex = 3;
+            this.chkcss_base64.Text = "css base64";
+            this.chkcss_base64.UseVisualStyleBackColor = true;
+            // 
+            // chkjson
+            // 
+            this.chkjson.AutoSize = true;
+            this.chkjson.Checked = true;
+            this.chkjson.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkjson.Location = new System.Drawing.Point(331, 13);
+            this.chkjson.Name = "chkjson";
+            this.chkjson.Size = new System.Drawing.Size(48, 16);
+            this.chkjson.TabIndex = 4;
+            this.chkjson.Text = "json";
+            this.chkjson.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(59, 109);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "输出：";
             // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1008, 545);
+            this.ClientSize = new System.Drawing.Size(990, 691);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Css背景图合并工具";
+            this.Text = "Css背景图(sprite)合并工具";
             this.panelTop.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
+            this.panelPhone.ResumeLayout(false);
+            this.panelPhone.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -558,10 +695,12 @@
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panelPhone.ResumeLayout(false);
-            this.panelPhone.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -606,6 +745,16 @@
         private System.Windows.Forms.LinkLabel linkLabelHelp;
         private System.Windows.Forms.LinkLabel linkLabelLess;
         private System.Windows.Forms.LinkLabel linkLabelSass;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TextBox txtJson;
+        private System.Windows.Forms.CheckBox chkOutListImg;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox chkjson;
+        private System.Windows.Forms.CheckBox chkcss_base64;
+        private System.Windows.Forms.CheckBox chksass_base64;
+        private System.Windows.Forms.CheckBox chkcssless;
+        private System.Windows.Forms.CheckBox chksass;
     }
 }
 

@@ -20,12 +20,12 @@ namespace CssSprite
     public partial class FormMain : Form
     {
         /// <summary>
-        /// °æ±¾ºÅ
+        /// ç‰ˆæœ¬å·
         /// </summary>
         public const string CurentVersion = "4.3.0.0";
 
         /// <summary>
-        /// ·şÎñÆ÷µØÖ·
+        /// æœåŠ¡å™¨åœ°å€
         /// </summary>
         private const string NetUrl = "https://csssprite.herokuapp.com/";
 
@@ -34,7 +34,9 @@ namespace CssSprite
         private List<ImageInfo> _imgList;
         private string dialogFile = string.Empty;
         private string basePath;
-        internal class ImageInfo
+
+        private int _gap = 8; // å›¾æ ‡ä¹‹é—´çš„é—´è·
+         internal class ImageInfo
         {
             internal ImageInfo(Image img, string name, string fileName)
             {
@@ -144,7 +146,7 @@ namespace CssSprite
         private delegate void EnableButtonCallBack();
 
         private void ShowBtnUpdate(){
-            this.Text = "Css±³¾°Í¼ºÏ²¢¹¤¾ß(ÓĞĞÂ¸üĞÂ£¬Çëµã»÷ÏÂ·½¸üĞÂ°´Å¥¸üĞÂ)";
+            this.Text = "CssèƒŒæ™¯å›¾åˆå¹¶å·¥å…·(æœ‰æ–°æ›´æ–°ï¼Œè¯·ç‚¹å‡»ä¸‹æ–¹æ›´æ–°æŒ‰é’®æ›´æ–°)";
             btnUpdate.Visible = true;
         }
 
@@ -174,27 +176,27 @@ namespace CssSprite
         }
 
         /// <summary>
-        /// Êó±êµÄ³õÊ¼Î»ÖÃ
+        /// é¼ æ ‡çš„åˆå§‹ä½ç½®
         /// </summary>
         Point _panelPoint;
         /// <summary>
-        /// ÊÇ·ñÔÚÍÏ¶¯
+        /// æ˜¯å¦åœ¨æ‹–åŠ¨
         /// </summary>
         bool _isSelect = false;
         /// <summary>
-        /// »­±Ê
+        /// ç”»ç¬”
         /// </summary>
         Graphics g;
         /// <summary>
-        /// ÑÕÉ«±Ê
+        /// é¢œè‰²ç¬”
         /// </summary>
         Pen pen;
         /// <summary>
-        /// ÇøÓò
+        /// åŒºåŸŸ
         /// </summary>
         Area area;
         /// <summary>
-        /// ÁãÊ±×°ÔØÑ¡ÖĞÍ¼Æ¬ÁĞ±í
+        /// é›¶æ—¶è£…è½½é€‰ä¸­å›¾ç‰‡åˆ—è¡¨
         /// </summary>
         List<PictureBox> list;
         void panelImages_MouseDown(object sender, MouseEventArgs e)
@@ -273,7 +275,7 @@ namespace CssSprite
         }
 
         /// <summary>
-        /// ÖØ»æ¾ØĞÎ±ß¿ò
+        /// é‡ç»˜çŸ©å½¢è¾¹æ¡†
         /// </summary>
         /// <param name="lists"></param>
         void DrawRectangle(List<PictureBox> list) 
@@ -284,7 +286,7 @@ namespace CssSprite
         }
 
         /// <summary>
-        ///»ñÈ¡×î´ó×îĞ¡³ß´ç
+        ///è·å–æœ€å¤§æœ€å°å°ºå¯¸
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -357,7 +359,7 @@ namespace CssSprite
                     {
                         _imgList = new List<ImageInfo>();
                     }
-                    var noFile = "ÕâĞ©ÎÄ¼ş²»´æÔÚ£º" + Environment.NewLine;
+                    var noFile = "è¿™äº›æ–‡ä»¶ä¸å­˜åœ¨ï¼š" + Environment.NewLine;
                     var hasFile=false;
                     foreach (Sprite s in spriteFile.SpriteList)
                     {
@@ -379,7 +381,7 @@ namespace CssSprite
                     }
                     if (hasFile) 
                     {
-                        MessageBox.Show(noFile, "ÌáÊ¾", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(noFile, "æç¤º", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     txtDir.Text = spriteFile.CssFileName;
                     txtName.Text = spriteFile.ImageName;
@@ -391,14 +393,14 @@ namespace CssSprite
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message + Environment.NewLine + ".spriteÎÄ¼ş±»Ëğ»µ£¬ÎŞ·¨´ò¿ª£¡");
+                    MessageBox.Show(ex.Message + Environment.NewLine + ".spriteæ–‡ä»¶è¢«æŸåï¼Œæ— æ³•æ‰“å¼€ï¼");
                 }
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            openFileDialog.Filter = "PngÎÄ¼ş|*.png|JpegÎÄ¼ş|*.jpeg|JpgÎÄ¼ş|*.jpg";
+            openFileDialog.Filter = "Pngæ–‡ä»¶|*.png|Jpegæ–‡ä»¶|*.jpeg|Jpgæ–‡ä»¶|*.jpg";
             openFileDialog.Multiselect = false;
             DialogResult dr = openFileDialog.ShowDialog();
             if (DialogResult.OK == dr && openFileDialog.FileNames.Length > 0)
@@ -426,7 +428,7 @@ namespace CssSprite
         {
             if (_selectedPicture != null)
             { 
-                var dr =  MessageBox.Show("È·¶¨É¾³ıÍ¼Æ¬£º" + ((ImageInfo)_selectedPicture.Image.Tag).Name + " £¿", "Ñ¯ÎÊ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var dr =  MessageBox.Show("ç¡®å®šåˆ é™¤å›¾ç‰‡ï¼š" + ((ImageInfo)_selectedPicture.Image.Tag).Name + " ï¼Ÿ", "è¯¢é—®", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes) {
                     foreach (ImageInfo info in _imgList)
                     {
@@ -444,19 +446,19 @@ namespace CssSprite
             }
             else
             {
-                MessageBox.Show("ÇëÑ¡ÖĞÄãĞèÒªÒÆ³ıµÄÍ¼Æ¬£¡");
+                MessageBox.Show("è¯·é€‰ä¸­ä½ éœ€è¦ç§»é™¤çš„å›¾ç‰‡ï¼");
             }
         }
 
         /// <summary>
-        /// »­²¼ÒÔ¼°¶Ô»°¿ò³õÊ¼»¯
+        /// ç”»å¸ƒä»¥åŠå¯¹è¯æ¡†åˆå§‹åŒ–
         /// </summary>
         /// <param name="spriteFile"></param>
         private bool OpenFile(bool spriteFile) 
         {
             if (_imgList != null && _imgList.Count > 0)
             {
-                DialogResult queryDr = MessageBox.Show("È·ÊµÒªÖØĞÂÑ¡ÔñÍ¼Æ¬Âğ£¿ÖØĞÂÑ¡ÔñÍ¼Æ¬£¬µ±Ç°µÄÍ¼Æ¬²¼¾Ö½«¶ªÊ§¡£", "Ñ¯ÎÊ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult queryDr = MessageBox.Show("ç¡®å®è¦é‡æ–°é€‰æ‹©å›¾ç‰‡å—ï¼Ÿé‡æ–°é€‰æ‹©å›¾ç‰‡ï¼Œå½“å‰çš„å›¾ç‰‡å¸ƒå±€å°†ä¸¢å¤±ã€‚", "è¯¢é—®", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (queryDr == DialogResult.Yes)
                 {
                     _imgList.Clear();
@@ -469,18 +471,18 @@ namespace CssSprite
             }
             if (spriteFile)
             {
-                openFileDialog.Filter = "css spriteÎÄ¼ş|*.sprite";
+                openFileDialog.Filter = "css spriteæ–‡ä»¶|*.sprite";
                 openFileDialog.Multiselect = false;
             }
             else {
-                openFileDialog.Filter = "PngÎÄ¼ş|*.png|JpegÎÄ¼ş|*.jpeg|JpgÎÄ¼ş|*.jpg";
+                openFileDialog.Filter = "Pngæ–‡ä»¶|*.png|Jpegæ–‡ä»¶|*.jpeg|Jpgæ–‡ä»¶|*.jpg";
                 openFileDialog.Multiselect = true;
             }
             return true;
         }
 
         /// <summary>
-        /// ¼ÓÔØÍ¼Æ¬½ø»­²¼
+        /// åŠ è½½å›¾ç‰‡è¿›ç”»å¸ƒ
         /// </summary>
         /// <param name="imageFileNames"></param>
         private void LoadImages(string[] imageFileNames)
@@ -510,7 +512,7 @@ namespace CssSprite
         }
 
         /// <summary>
-        /// ÑéÖ¤ÊÇ·ñÊÇ¶à¸öÎÄ¼ş
+        /// éªŒè¯æ˜¯å¦æ˜¯å¤šä¸ªæ–‡ä»¶
         /// </summary>
         /// <returns></returns>
         private bool AssertFiles()
@@ -518,14 +520,14 @@ namespace CssSprite
             string[] files = openFileDialog.FileNames;
             if (files == null || (openFileDialog.Multiselect ? files.Length < 2 : files.Length <0))
             {
-                MessageBox.Show("ÇëÑ¡Ôñ¶à¸öÍ¼Æ¬ÎÄ¼ş¡£");
+                MessageBox.Show("è¯·é€‰æ‹©å¤šä¸ªå›¾ç‰‡æ–‡ä»¶ã€‚");
                 return false;
             }
             return true;
         }
 
         /// <summary>
-        /// Ñ¡ÖĞµÄµ¥ÕÅÍ¼Æ¬
+        /// é€‰ä¸­çš„å•å¼ å›¾ç‰‡
         /// </summary>
         private PictureBox _selectedPicture=null;
 
@@ -540,7 +542,7 @@ namespace CssSprite
         }
 
         
-        //Ğ¡Í¼ºáÅÅµã»÷
+        //å°å›¾ç«–æ’ç‚¹å‡»
         private void ButtonVRange_Click(object sender, EventArgs e)
         {
             if (!AssertFiles()) return;
@@ -555,14 +557,14 @@ namespace CssSprite
                 top = currentHeight;
 
                 AddPictureBox(img, left, top);
-                currentHeight += img.Height;
+                currentHeight += img.Height+ _gap;
             }
             panelImages.ResumeLayout(false);
             SetCssText();
         }
 
         /// <summary>
-        /// ÉèÖÃcssµÄÎÄ±¾
+        /// è®¾ç½®cssçš„æ–‡æœ¬
         /// </summary>
         public void SetCssText() {
             var _list=new List<PictureBox>();
@@ -576,6 +578,7 @@ namespace CssSprite
 
             var sassStr = string.Empty;
             var cssStr = string.Empty;
+            var jsonItems = new List<string>(); // Jin æ·»åŠ 
 
             if (chkBoxPhone.Checked)
             {
@@ -592,17 +595,19 @@ namespace CssSprite
             {
                 sassStr += GetSassCss(pb.Image, pb.Left - edgeSize.MinWidth, pb.Top - edgeSize.MinHeight, true);
                 cssStr += GetSassCss(pb.Image, pb.Left - edgeSize.MinWidth, pb.Top - edgeSize.MinHeight, false);
+                jsonItems.Add(GetJson(pb.Image, pb.Left - edgeSize.MinWidth, pb.Top - edgeSize.MinHeight));  // Jin æ·»åŠ 
             }
             txtSass.Text = sassStr;
             txtCss.Text = cssStr;
+            txtJson.Text = "{" + string.Join(",",jsonItems.ToArray()) + "}";
         }
 
         /// <summary>
-        /// µÃµ½sass´úÂë
+        /// å¾—åˆ°sassä»£ç 
         /// </summary>
-        /// <param name="img">Í¼Æ¬</param>
-        /// <param name="left">×ó±ß¾àÀë</param>
-        /// <param name="top">ÓÒ±ß¾àÀë</param>
+        /// <param name="img">å›¾ç‰‡</param>
+        /// <param name="left">å·¦è¾¹è·ç¦»</param>
+        /// <param name="top">å³è¾¹è·ç¦»</param>
         /// <returns></returns>
         string GetSassCss(Image img, int left, int top,bool isSass)
         {
@@ -641,6 +646,30 @@ namespace CssSprite
                 return String.Format(str, ".", lessPrefix, lessPrefix).Replace("[", "{").Replace("]", "}");
             }
         }
+
+        /// <summary>
+        /// å¾—åˆ°jsonç»“æ„
+        /// </summary>
+        /// <param name="img">å›¾ç‰‡</param>
+        /// <param name="left">å·¦è¾¹è·ç¦»</param>
+        /// <param name="top">å³è¾¹è·ç¦»</param>
+        /// <returns></returns>
+        string GetJson(Image img, int left, int top)
+        {
+            ImageInfo imgInfo = (ImageInfo)img.Tag;
+           
+            var _left = string.Empty;
+            var _top = string.Empty;
+
+            var imgHeight =  img.Height.ToString() ;
+            var imgWidth =  img.Width.ToString() ;
+            _left = left == 0 ? "0" : (0 + left).ToString();
+            _top = top == 0 ? "0" : (0 + top).ToString();
+            var str =  "\"{0}\":[\"x\":{1},\"y\":{2},\"width\":{3},\"height\":{4},\"pixelRatio\":1]";
+            return String.Format(str, GetCssName(imgInfo.Name), _left,_top, imgWidth, imgHeight).Replace("[", "{").Replace("]", "}");
+           
+        }
+
 
         void SetBase64()
         {
@@ -728,11 +757,11 @@ namespace CssSprite
         }
 
         /// <summary>
-        /// »­³öÍ¼Æ¬
+        /// ç”»å‡ºå›¾ç‰‡
         /// </summary>
-        /// <param name="img">Í¼Æ¬</param>
-        /// <param name="left">×ó±ß</param>
-        /// <param name="top">ÉÏ±ß</param>
+        /// <param name="img">å›¾ç‰‡</param>
+        /// <param name="left">å·¦è¾¹</param>
+        /// <param name="top">ä¸Šè¾¹</param>
         private void AddPictureBox(Image img, int left, int top)
         {
             PictureBox pb = new PictureBox();
@@ -778,7 +807,7 @@ namespace CssSprite
             }
         }
 
-        #region ÍÏ¶¯
+        #region æ‹–åŠ¨
         bool _isDragged = false;
         Point _dragStartLocation;
         void pb_MouseUp(object sender, MouseEventArgs e)
@@ -823,7 +852,7 @@ namespace CssSprite
             panelImages.HorizontalScroll.Value = 0;
             if (_imgList == null || _imgList.Count < 2)
             {
-                MessageBox.Show("ÇëÑ¡Ôñ¶à¸ö±³¾°Í¼Æ¬¡£");
+                MessageBox.Show("è¯·é€‰æ‹©å¤šä¸ªèƒŒæ™¯å›¾ç‰‡ã€‚");
                 return;
             }
 
@@ -839,7 +868,7 @@ namespace CssSprite
                 if (File.Exists(imgPath))
                 {
                     if (DialogResult.Yes !=
-                        MessageBox.Show("Ñ¡¶¨ÎÄ¼ş¼ĞÖĞÒÑ´æÔÚ" + txtName.Text + "." + GetImgExt() + "£¬¼ÌĞøÖ´ĞĞ½«¸²¸ÇÒÑ´æÔÚÎÄ¼ş£¬ÊÇ·ñ¼ÌĞø£¿", "Ñ¯ÎÊ"
+                        MessageBox.Show("é€‰å®šæ–‡ä»¶å¤¹ä¸­å·²å­˜åœ¨" + txtName.Text + "." + GetImgExt() + "ï¼Œç»§ç»­æ‰§è¡Œå°†è¦†ç›–å·²å­˜åœ¨æ–‡ä»¶ï¼Œæ˜¯å¦ç»§ç»­ï¼Ÿ", "è¯¢é—®"
                         , MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                     {
                         return;
@@ -848,8 +877,8 @@ namespace CssSprite
 
                 int maxWidth,maxHeight,minWidth,minHeight;
                 maxWidth = maxHeight = minWidth = minHeight = 0;
-                //Ñ­»·»ñÈ¡¾àÀë×ó±ßºÍÉÏ±ß×îĞ¡¾àÀë
-                //°ÑËùÓĞÔªËØ°´ÕÕ0£¬0µãÎª±ê×¼£¬Í¨¹ı×îĞ¡ÏòÉÏ¾àÀëºÍÏò×ó¾àÀëÆ½ÒÆ£¬»ñÈ¡×î´ó¾àÀë
+                //å¾ªç¯è·å–è·ç¦»å·¦è¾¹å’Œä¸Šè¾¹æœ€å°è·ç¦»
+                //æŠŠæ‰€æœ‰å…ƒç´ æŒ‰ç…§0ï¼Œ0ç‚¹ä¸ºæ ‡å‡†ï¼Œé€šè¿‡æœ€å°å‘ä¸Šè·ç¦»å’Œå‘å·¦è·ç¦»å¹³ç§»ï¼Œè·å–æœ€å¤§è·ç¦»
                 foreach (PictureBox pb in panelImages.Controls)
                 {
                     if (panelImages.Controls.GetChildIndex(pb) == 0)
@@ -884,11 +913,11 @@ namespace CssSprite
                     }
                     using (Graphics g = Graphics.FromImage(bigImg))
                     {
-                        //ÉèÖÃ¸ßÖÊÁ¿²åÖµ·¨ 
+                        //è®¾ç½®é«˜è´¨é‡æ’å€¼æ³• 
                         g.InterpolationMode = InterpolationMode.High;
-                        //ÉèÖÃ¸ßÖÊÁ¿,µÍËÙ¶È³ÊÏÖÆ½»¬¶È 
+                        //è®¾ç½®é«˜è´¨é‡,ä½é€Ÿåº¦å‘ˆç°å¹³æ»‘åº¦ 
                         g.SmoothingMode = SmoothingMode.HighQuality;
-                        //Çå¿Õ»­²¼²¢ÒÔÍ¸Ã÷±³¾°É«Ìî³ä 
+                        //æ¸…ç©ºç”»å¸ƒå¹¶ä»¥é€æ˜èƒŒæ™¯è‰²å¡«å…… 
                         g.CompositingQuality = CompositingQuality.HighQuality;
                         g.SmoothingMode = SmoothingMode.HighQuality;
                         g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -916,32 +945,75 @@ namespace CssSprite
                                 g.DrawImage(pb.Image, pb.Location.X - minWidth, pb.Location.Y - minHeight, pb.Image.Width, pb.Image.Height);
                                 if (Path.GetDirectoryName(path) != folderBrowserDialog.SelectedPath)
                                 {
-                                    File.Copy(path, folderBrowserDialog.SelectedPath + "\\" + Path.GetFileName(path), false);
+                                    if(chkOutListImg.Checked)
+                                        File.Copy(path, folderBrowserDialog.SelectedPath + "\\" + Path.GetFileName(path), false);
                                 }
                             }
                             XmlSerializer.SaveToXml(folderBrowserDialog.SelectedPath + "\\" + txtName.Text + ".sprite", sprite);
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message,"ÌáÊ¾",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                            MessageBox.Show(ex.Message,"æç¤º",MessageBoxButtons.OK,MessageBoxIcon.Error);
                             return;
                         }
                     }
                     try
                     {
-                        //±£´æÍ¼Æ¬
+                        //ä¿å­˜å›¾ç‰‡
                         bigImg.Save(imgPath, format);
-                        MessageBox.Show("Í¼Æ¬Éú³É³É¹¦£¡");
+                        MessageBox.Show("å›¾ç‰‡ç”ŸæˆæˆåŠŸï¼");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message+"Í¼Æ¬Éú³ÉÊ§°Ü£¬±»¸²¸ÇÎÄ¼ş¿ÉÄÜ±»ÆäËû³ÌĞòÕ¼ÓÃ£¬Çë»»¸öÎÄ¼şÃû£¡");
+                        MessageBox.Show(ex.Message+"å›¾ç‰‡ç”Ÿæˆå¤±è´¥ï¼Œè¢«è¦†ç›–æ–‡ä»¶å¯èƒ½è¢«å…¶ä»–ç¨‹åºå ç”¨ï¼Œè¯·æ¢ä¸ªæ–‡ä»¶åï¼");
                     }
+
+                   
+                }
+
+
+                // ä¿å­˜ css/less sass json
+                try
+                {
+                    if(chkcssless.Checked)
+                    {
+                        SaveFile(Path.Combine(imgDir, txtName.Text + "_css.css"), txtCss.Text);
+                    }
+                   
+                    if(chkcss_base64.Checked)
+                    { 
+                        SaveFile(Path.Combine(imgDir, txtName.Text + "_base64_css.css"), txtBase64Css.Text);
+                    }
+                    if(chksass.Checked)
+                        SaveFile(Path.Combine(imgDir, txtName.Text + "_sass.sass"), txtSass.Text);
+                    if(chksass_base64.Checked)
+                        SaveFile(Path.Combine(imgDir, txtName.Text + "_base64_sass.sass"), txtBase64Sass.Text);
+                   if(chkjson.Checked)
+                        SaveFile(Path.Combine(imgDir, txtName.Text + ".json"), txtJson.Text);
+                }
+                catch (Exception ex)
+                {
+
                 }
             }
         }
 
+        public void SaveFile(string file,string content)
+        {
+            try
+            {
+                FileStream fs = new FileStream(file, FileMode.OpenOrCreate);
+                StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);// è§£å†³ä¸­æ–‡ä¹±ç é—®é¢˜
+                sw.Write(content);
+                //ã€3ã€‘é‡Šæ”¾èµ„æº
+                sw.Close();
+                fs.Close();
+            }
+            catch
+            {
 
+            }
+        }
         public bool IsImgExists(string fileName)
         {
             foreach (ImageInfo  ii in _imgList)
@@ -970,7 +1042,7 @@ namespace CssSprite
             SetCssText();
         }
 
-        //Ğ¡Í¼ºáÅÅµã»÷
+        //å°å›¾æ¨ªæ’ç‚¹å‡»
         private void buttonHRange_Click(object sender, EventArgs e)
         {
             if (!AssertFiles()) return;
@@ -981,7 +1053,7 @@ namespace CssSprite
             {
                 Image img = ii.Image;
                 AddPictureBox(img, left, top);
-                left += img.Width;
+                left += img.Width + _gap;
             }
 
             panelImages.ResumeLayout(false);
@@ -999,7 +1071,7 @@ namespace CssSprite
                 {
                     _list.Add(pb);
                 }
-                //°´ÕÕYÖáÅÅĞò
+                //æŒ‰ç…§Yè½´æ’åº
                 for (int i = 0; i < _list.Count; i++)
                 {
                     for (int j = 0; j < _list.Count; j++)
@@ -1032,7 +1104,7 @@ namespace CssSprite
                     }
                     left++;
                 }
-                //°´ÕÕXÅÅĞò
+                //æŒ‰ç…§Xæ’åº
                 for (int i = 0; i < _list.Count; i++)
                 {
                     for (int j = 0; j < _list.Count; j++)

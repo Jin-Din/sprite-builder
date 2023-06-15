@@ -3,25 +3,30 @@
 ```
 
 	css雪碧图简单制作工具
-	
+
 	可以通过图片，直接生成sprite文件，并且生成代码
-	
+
 	可以通过鼠标点击调整图片位置
 
 	可以添加单张图片，以及删除单张图片
 
 	可以保存为.sprite文件，以后好维护
-	
+
 ```
-		
-# 编程不易大家支持下吧
 
-![二维码](qrcode.png "nodeio")
+# 修改内容
 
-# CSDN下载地址
+1. 加入生成 json 配置，以便支持矢量瓦片电子地图中对 sprite 的支持
+2. 输出内容可选。加入选项框，可以选择输出的内容
 
-http://download.csdn.net/detail/wx247919365/8741243
+# TODO
 
-# V4.3最新版本介绍
+3. 支持从 json 文件中方向读取并解译 sprite
 
-http://www.cnblogs.com/wang4517/p/4529741.html
+# 特别说明
+
+> 本程序是基于 [原作者 Github](https://github.com/iwangx/sprite) 程序的基础上修改了部分内容。仅供本人日常学习使用。喜欢的可以联系原作者支持一下。
+
+- [原作者 Github](https://github.com/iwangx/sprite)
+- [原作者 cnblogs](http://www.cnblogs.com/wang4517/p/4529741.html)
+- [CSDN 下载地址](http://download.csdn.net/detail/wx247919365/8741243)
