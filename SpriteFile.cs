@@ -11,17 +11,17 @@ namespace CssSprite
         /// <summary>
         /// css文件路径
         /// </summary>
-        private string _cssFileName;
+        private string _cssFileName = "../images";
 
         /// <summary>
         /// 生成的雪碧图名称
         /// </summary>
-        private string _imageName;
+        private string _imageName = "img";
 
         /// <summary>
         /// 是否是手机端
         /// </summary>
-        private bool _isPhone;
+        private bool _isPhone=false;
 
         /// <summary>
         /// 手机端单位
@@ -36,7 +36,7 @@ namespace CssSprite
         /// <summary>
         /// 雪碧图文件类型
         /// </summary>
-        private string _spriteImgFileType;
+        private string _spriteImgFileType = "Png";
 
         /// <summary>
         /// 图片列表（路径，X,Y）
@@ -48,7 +48,7 @@ namespace CssSprite
         {
             get { return _cssFileName; }
             set { _cssFileName = value; }
-        }
+        } 
 
         [XmlAttribute("ImageName")]
         public string ImageName
