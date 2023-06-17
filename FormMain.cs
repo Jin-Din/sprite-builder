@@ -1,21 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using System.Drawing.Imaging;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
-using System.Globalization;
+using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Collections;
-using System.Threading;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 using static CssSprite.JsonFileSerializer;
-using static CssSprite.FormMain;
 
 namespace CssSprite
 {
@@ -38,6 +32,9 @@ namespace CssSprite
         private string basePath;
 
         private int _gap = 8; // 图标之间的间距
+
+        private int canvasMaxHeight = 300; //当竖排时允许的最大高度
+        private int canvasMaxWidth = 900; //当横排时允许的最大宽度
         internal class ImageInfo
         {
             internal ImageInfo(Image img, string name, string fileName)
@@ -561,20 +558,62 @@ namespace CssSprite
         //小图竖排点击
         private void ButtonVRange_Click(object sender, EventArgs e)
         {
+            //根据窗口大小
+            canvasMaxHeight = panelImages.Height;
             if (!AssertFiles()) return;
             panelImages.Controls.Clear();
             int left = 0;
             int top = 0;
-            int currentHeight = 0;
+            int maxOffset = 0; //记录当前行或当列图标中的最大值
             foreach (ImageInfo ii in _imgList)
             {
                 Image img = ii.Image;
-                left = 0;
-                top = currentHeight;
-
+                //获取并记录最大的换行值
+                if (img.Width > maxOffset)
+                    maxOffset = img.Width;
+                // 判断当前是否超出的最大长度
+                if (top + img.Height > canvasMaxHeight)
+                {
+                    //超出要换行
+                    left += maxOffset + _gap;
+                    maxOffset = 0;
+                    top = 0; //重置
+                }
                 AddPictureBox(img, left, top);
-                currentHeight += img.Height + _gap;
+                top += img.Height + _gap;
             }
+            panelImages.ResumeLayout(false);
+            SetCssText();
+        }
+        //小图横排点击
+        private void buttonHRange_Click(object sender, EventArgs e)
+        {
+            //根据窗口大小
+            canvasMaxWidth = panelImages.Width;
+            if (!AssertFiles()) return;
+            panelImages.Controls.Clear();
+            int left = 0;
+            int top = 0;
+            int maxOffset = 0; //记录当前行或当列图标中的最大值
+            foreach (ImageInfo ii in _imgList)
+            {
+                Image img = ii.Image;
+
+                //获取并记录最大的换行值
+                if (img.Height > maxOffset)
+                    maxOffset = img.Height;
+                // 判断当前是否超出的最大长度
+                if (left + img.Width > canvasMaxWidth)
+                {
+                    //超出要换行
+                    top += maxOffset + _gap;
+                    maxOffset = 0;
+                    left = 0; //重置
+                }
+                AddPictureBox(img, left, top);
+                left += img.Width + _gap;
+            }
+
             panelImages.ResumeLayout(false);
             SetCssText();
         }
@@ -996,7 +1035,7 @@ namespace CssSprite
                                     width = pb.Image.Width,
                                     height = pb.Image.Height,
                                     format = Path.GetExtension(path).Replace(".", "")
-                            };
+                                };
                                 sprite.SpriteList.Add(s);
                                 g.DrawImage(pb.Image, pb.Location.X - minWidth, pb.Location.Y - minHeight, pb.Image.Width, pb.Image.Height);
                                 if (Path.GetDirectoryName(path) != folderBrowserDialog.SelectedPath)
@@ -1098,23 +1137,7 @@ namespace CssSprite
             SetCssText();
         }
 
-        //小图横排点击
-        private void buttonHRange_Click(object sender, EventArgs e)
-        {
-            if (!AssertFiles()) return;
-            panelImages.Controls.Clear();
-            int left = 0;
-            int top = 0;
-            foreach (ImageInfo ii in _imgList)
-            {
-                Image img = ii.Image;
-                AddPictureBox(img, left, top);
-                left += img.Width + _gap;
-            }
 
-            panelImages.ResumeLayout(false);
-            SetCssText();
-        }
 
         List<PictureBox> _list;
         private void chkBoxPhone_CheckedChanged(object sender, EventArgs e)
@@ -1271,6 +1294,110 @@ namespace CssSprite
         private void linkLabelLess_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://csssprite.herokuapp.com/lessVar");
+        }
+        /// <summary>
+        /// 分解sprite。从json文件中分解输出图标 Jin add
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSplitSprite_Click(object sender, EventArgs e)
+        {
+            openFileDialog.Filter = "json文件 |*json|css sprite文件|*.sprite";
+            openFileDialog.Multiselect = false;
+
+            DialogResult dr = openFileDialog.ShowDialog();
+
+            if (DialogResult.OK == dr && openFileDialog.FileNames.Length > 0)
+            {
+                //根目录
+                basePath = Path.GetDirectoryName(openFileDialog.FileName);
+                folderBrowserDialog.SelectedPath = basePath;
+                var selectFile = openFileDialog.FileNames[0];
+                //判断同名的spire .png 是否存在
+                string imgFile = System.IO.Path.Combine(basePath, Path.GetFileNameWithoutExtension(selectFile) + ".png");
+                if (!File.Exists(imgFile))
+                {
+                    MessageBox.Show(imgFile + Environment.NewLine + "文件不存在！");
+                    return;
+                }
+
+                string fileExt = System.IO.Path.GetExtension(selectFile);
+                var spriteFile = new SpriteFile();
+                try
+                {
+                    if (fileExt == ".json")
+                    {
+                        spriteFile = JsonFileSerializer.LoadFromJson(selectFile);
+                    }
+                    else
+                    {
+                        spriteFile = (SpriteFile)XmlSerializer.LoadFromXml(selectFile, spriteFile.GetType());
+                    }
+
+                    using (Bitmap bitmap = (Bitmap)Image.FromFile(imgFile))
+                    {
+                        using (Bitmap bitmap3 = new Bitmap(bitmap, bitmap.Width, bitmap.Height))
+                        {
+                            foreach (Sprite item in spriteFile.SpriteList)
+                            {
+                                Bitmap bitmap2 = new Bitmap(item.width, item.height);
+                                for (int j = 0; j < item.width; j++)
+                                {
+                                    for (int k = 0; k < item.height; k++)
+                                    {
+                                        Color pixel = bitmap3.GetPixel(item.x + j, item.y + k);
+                                        bitmap2.SetPixel(j, k, pixel);
+                                    }
+                                }
+                                string filename = System.IO.Path.Combine(basePath, item.path);
+                                var imgFormat = ImageFormat.Png;
+                                switch (item.format)
+                                {
+                                    case "jpg":
+                                    case "jpeg":
+                                        imgFormat = ImageFormat.Jpeg; break;
+                                    case "gif":
+                                        imgFormat = ImageFormat.Gif; break;
+                                    case "png":
+                                        imgFormat = ImageFormat.Png;
+                                        break;
+                                    case "bmp":
+                                        imgFormat = ImageFormat.Bmp; break;
+
+                                }
+                                bitmap2.Save(filename, imgFormat);
+                            }
+
+                            MessageBox.Show("分解完毕！");
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + Environment.NewLine + "文件被损坏，无法打开！");
+                }
+            }
+        }
+
+        private Bitmap GetBitmapFromSprite(string imgFile, Sprite item)
+        {
+            using (Bitmap bitmap = (Bitmap)Image.FromFile(imgFile))
+            {
+                using (Bitmap bitmap3 = new Bitmap(bitmap, bitmap.Width, bitmap.Height))
+                {
+                    Bitmap bitmap2 = new Bitmap(item.width, item.height);
+                    for (int j = 0; j < item.width; j++)
+                    {
+                        for (int k = 0; k < item.height; k++)
+                        {
+                            Color pixel = bitmap3.GetPixel(item.x + j, item.y + k);
+                            bitmap2.SetPixel(j, k, pixel);
+                        }
+                    }
+                    return bitmap2;
+                }
+            }
         }
     }
 }

@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Policy;
-using System.Text;
-using System.Windows.Forms;
 
 namespace CssSprite
 {
@@ -29,7 +25,14 @@ namespace CssSprite
                 };
                 foreach (KeyValuePair<string, Sprite> item in result)
                 {
-                    var jsonValue = item.Value;
+                    Sprite jsonValue = item.Value;
+                    if (jsonValue.path == null)
+                    {
+                        //判断图片类型
+                        string ext = jsonValue.format == null ? "png" : jsonValue.format;
+                        jsonValue.path = item.Key + "." + ext;
+                    }
+
                     spriteFile.SpriteList.Add(jsonValue);
                 }
                 return spriteFile;

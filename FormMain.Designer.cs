@@ -42,6 +42,7 @@ namespace CssSprite
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.chkBoxPhone = new System.Windows.Forms.CheckBox();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnSplitSprite = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -52,6 +53,13 @@ namespace CssSprite
             this.buttonHRange = new System.Windows.Forms.Button();
             this.buttonMakeBigImageCss = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chkjson = new System.Windows.Forms.CheckBox();
+            this.chkcss_base64 = new System.Windows.Forms.CheckBox();
+            this.chksass_base64 = new System.Windows.Forms.CheckBox();
+            this.chkcssless = new System.Windows.Forms.CheckBox();
+            this.chksass = new System.Windows.Forms.CheckBox();
             this.chkOutListImg = new System.Windows.Forms.CheckBox();
             this.panelPhone = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -70,15 +78,10 @@ namespace CssSprite
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelImages = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.chksass = new System.Windows.Forms.CheckBox();
-            this.chkcssless = new System.Windows.Forms.CheckBox();
-            this.chksass_base64 = new System.Windows.Forms.CheckBox();
-            this.chkcss_base64 = new System.Windows.Forms.CheckBox();
-            this.chkjson = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panelTop.SuspendLayout();
             this.panelBottom.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panelPhone.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -88,7 +91,6 @@ namespace CssSprite
             this.tabPage5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -99,6 +101,7 @@ namespace CssSprite
             // comboBoxImgType
             // 
             this.comboBoxImgType.BackColor = System.Drawing.Color.White;
+            this.comboBoxImgType.Enabled = false;
             this.comboBoxImgType.ForeColor = System.Drawing.Color.RoyalBlue;
             this.comboBoxImgType.Items.AddRange(new object[] {
             "Png",
@@ -188,7 +191,7 @@ namespace CssSprite
             this.txtCss.Name = "txtCss";
             this.txtCss.ReadOnly = true;
             this.txtCss.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtCss.Size = new System.Drawing.Size(955, 101);
+            this.txtCss.Size = new System.Drawing.Size(955, 90);
             this.txtCss.TabIndex = 19;
             this.txtCss.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCss_KeyDown);
             // 
@@ -205,6 +208,8 @@ namespace CssSprite
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.panel3);
+            this.panelTop.Controls.Add(this.btnSplitSprite);
             this.panelTop.Controls.Add(this.btnUpdate);
             this.panelTop.Controls.Add(this.btnDelete);
             this.panelTop.Controls.Add(this.btnAdd);
@@ -219,6 +224,22 @@ namespace CssSprite
             this.panelTop.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
             this.panelTop.Size = new System.Drawing.Size(984, 54);
             this.panelTop.TabIndex = 21;
+            // 
+            // btnSplitSprite
+            // 
+            this.btnSplitSprite.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSplitSprite.FlatAppearance.BorderSize = 0;
+            this.btnSplitSprite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSplitSprite.ForeColor = System.Drawing.Color.White;
+            this.btnSplitSprite.Image = global::CssSprite.Properties.Resources.QQ截图201504271504082;
+            this.btnSplitSprite.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSplitSprite.Location = new System.Drawing.Point(771, 9);
+            this.btnSplitSprite.Name = "btnSplitSprite";
+            this.btnSplitSprite.Size = new System.Drawing.Size(135, 40);
+            this.btnSplitSprite.TabIndex = 26;
+            this.btnSplitSprite.Text = "分解sprite";
+            this.btnSplitSprite.UseVisualStyleBackColor = false;
+            this.btnSplitSprite.Click += new System.EventHandler(this.btnSplitSprite_Click);
             // 
             // btnUpdate
             // 
@@ -313,7 +334,7 @@ namespace CssSprite
             this.buttonVRange.ForeColor = System.Drawing.Color.White;
             this.buttonVRange.Image = global::CssSprite.Properties.Resources.vertical;
             this.buttonVRange.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonVRange.Location = new System.Drawing.Point(555, 9);
+            this.buttonVRange.Location = new System.Drawing.Point(470, 9);
             this.buttonVRange.Name = "buttonVRange";
             this.buttonVRange.Size = new System.Drawing.Size(134, 40);
             this.buttonVRange.TabIndex = 4;
@@ -329,7 +350,7 @@ namespace CssSprite
             this.buttonHRange.ForeColor = System.Drawing.Color.White;
             this.buttonHRange.Image = global::CssSprite.Properties.Resources.horizontal;
             this.buttonHRange.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonHRange.Location = new System.Drawing.Point(695, 9);
+            this.buttonHRange.Location = new System.Drawing.Point(610, 9);
             this.buttonHRange.Name = "buttonHRange";
             this.buttonHRange.Size = new System.Drawing.Size(115, 40);
             this.buttonHRange.TabIndex = 5;
@@ -373,6 +394,87 @@ namespace CssSprite
             this.panelBottom.Name = "panelBottom";
             this.panelBottom.Size = new System.Drawing.Size(984, 274);
             this.panelBottom.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 109);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "输出：";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.chkjson);
+            this.panel2.Controls.Add(this.chkcss_base64);
+            this.panel2.Controls.Add(this.chksass_base64);
+            this.panel2.Controls.Add(this.chkcssless);
+            this.panel2.Controls.Add(this.chksass);
+            this.panel2.Location = new System.Drawing.Point(106, 96);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(401, 41);
+            this.panel2.TabIndex = 27;
+            // 
+            // chkjson
+            // 
+            this.chkjson.AutoSize = true;
+            this.chkjson.Checked = true;
+            this.chkjson.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkjson.Location = new System.Drawing.Point(331, 13);
+            this.chkjson.Name = "chkjson";
+            this.chkjson.Size = new System.Drawing.Size(48, 16);
+            this.chkjson.TabIndex = 4;
+            this.chkjson.Text = "json";
+            this.chkjson.UseVisualStyleBackColor = true;
+            // 
+            // chkcss_base64
+            // 
+            this.chkcss_base64.AutoSize = true;
+            this.chkcss_base64.Checked = true;
+            this.chkcss_base64.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkcss_base64.Location = new System.Drawing.Point(241, 13);
+            this.chkcss_base64.Name = "chkcss_base64";
+            this.chkcss_base64.Size = new System.Drawing.Size(84, 16);
+            this.chkcss_base64.TabIndex = 3;
+            this.chkcss_base64.Text = "css base64";
+            this.chkcss_base64.UseVisualStyleBackColor = true;
+            // 
+            // chksass_base64
+            // 
+            this.chksass_base64.AutoSize = true;
+            this.chksass_base64.Checked = true;
+            this.chksass_base64.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chksass_base64.Location = new System.Drawing.Point(145, 13);
+            this.chksass_base64.Name = "chksass_base64";
+            this.chksass_base64.Size = new System.Drawing.Size(90, 16);
+            this.chksass_base64.TabIndex = 2;
+            this.chksass_base64.Text = "sass base64";
+            this.chksass_base64.UseVisualStyleBackColor = true;
+            // 
+            // chkcssless
+            // 
+            this.chkcssless.AutoSize = true;
+            this.chkcssless.Checked = true;
+            this.chkcssless.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkcssless.Location = new System.Drawing.Point(58, 13);
+            this.chkcssless.Name = "chkcssless";
+            this.chkcssless.Size = new System.Drawing.Size(72, 16);
+            this.chkcssless.TabIndex = 1;
+            this.chkcssless.Text = "css/less";
+            this.chkcssless.UseVisualStyleBackColor = true;
+            // 
+            // chksass
+            // 
+            this.chksass.AutoSize = true;
+            this.chksass.Checked = true;
+            this.chksass.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chksass.Location = new System.Drawing.Point(4, 13);
+            this.chksass.Name = "chksass";
+            this.chksass.Size = new System.Drawing.Size(48, 16);
+            this.chksass.TabIndex = 0;
+            this.chksass.Text = "sass";
+            this.chksass.UseVisualStyleBackColor = true;
             // 
             // chkOutListImg
             // 
@@ -470,7 +572,7 @@ namespace CssSprite
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(961, 107);
+            this.tabPage2.Size = new System.Drawing.Size(961, 96);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "css/less代码";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -481,7 +583,7 @@ namespace CssSprite
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(961, 107);
+            this.tabPage3.Size = new System.Drawing.Size(961, 96);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "sass Base64代码";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -497,7 +599,7 @@ namespace CssSprite
             this.txtBase64Sass.Name = "txtBase64Sass";
             this.txtBase64Sass.ReadOnly = true;
             this.txtBase64Sass.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtBase64Sass.Size = new System.Drawing.Size(955, 101);
+            this.txtBase64Sass.Size = new System.Drawing.Size(955, 90);
             this.txtBase64Sass.TabIndex = 12;
             this.txtBase64Sass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBase64Sass_KeyDown);
             // 
@@ -507,7 +609,7 @@ namespace CssSprite
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(961, 107);
+            this.tabPage4.Size = new System.Drawing.Size(961, 96);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "css Base64代码";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -523,7 +625,7 @@ namespace CssSprite
             this.txtBase64Css.Name = "txtBase64Css";
             this.txtBase64Css.ReadOnly = true;
             this.txtBase64Css.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtBase64Css.Size = new System.Drawing.Size(955, 101);
+            this.txtBase64Css.Size = new System.Drawing.Size(955, 90);
             this.txtBase64Css.TabIndex = 12;
             this.txtBase64Css.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBase64Css_KeyDown);
             // 
@@ -533,7 +635,7 @@ namespace CssSprite
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(961, 107);
+            this.tabPage5.Size = new System.Drawing.Size(961, 96);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "json配置";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -549,7 +651,7 @@ namespace CssSprite
             this.txtJson.Name = "txtJson";
             this.txtJson.ReadOnly = true;
             this.txtJson.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtJson.Size = new System.Drawing.Size(955, 101);
+            this.txtJson.Size = new System.Drawing.Size(955, 90);
             this.txtJson.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -590,86 +692,14 @@ namespace CssSprite
             this.panelImages.Size = new System.Drawing.Size(984, 345);
             this.panelImages.TabIndex = 0;
             // 
-            // panel2
+            // panel3
             // 
-            this.panel2.Controls.Add(this.chkjson);
-            this.panel2.Controls.Add(this.chkcss_base64);
-            this.panel2.Controls.Add(this.chksass_base64);
-            this.panel2.Controls.Add(this.chkcssless);
-            this.panel2.Controls.Add(this.chksass);
-            this.panel2.Location = new System.Drawing.Point(106, 96);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(434, 41);
-            this.panel2.TabIndex = 27;
-            // 
-            // chksass
-            // 
-            this.chksass.AutoSize = true;
-            this.chksass.Checked = true;
-            this.chksass.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chksass.Location = new System.Drawing.Point(4, 13);
-            this.chksass.Name = "chksass";
-            this.chksass.Size = new System.Drawing.Size(48, 16);
-            this.chksass.TabIndex = 0;
-            this.chksass.Text = "sass";
-            this.chksass.UseVisualStyleBackColor = true;
-            // 
-            // chkcssless
-            // 
-            this.chkcssless.AutoSize = true;
-            this.chkcssless.Checked = true;
-            this.chkcssless.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkcssless.Location = new System.Drawing.Point(58, 13);
-            this.chkcssless.Name = "chkcssless";
-            this.chkcssless.Size = new System.Drawing.Size(72, 16);
-            this.chkcssless.TabIndex = 1;
-            this.chkcssless.Text = "css/less";
-            this.chkcssless.UseVisualStyleBackColor = true;
-            // 
-            // chksass_base64
-            // 
-            this.chksass_base64.AutoSize = true;
-            this.chksass_base64.Checked = true;
-            this.chksass_base64.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chksass_base64.Location = new System.Drawing.Point(145, 13);
-            this.chksass_base64.Name = "chksass_base64";
-            this.chksass_base64.Size = new System.Drawing.Size(90, 16);
-            this.chksass_base64.TabIndex = 2;
-            this.chksass_base64.Text = "sass base64";
-            this.chksass_base64.UseVisualStyleBackColor = true;
-            // 
-            // chkcss_base64
-            // 
-            this.chkcss_base64.AutoSize = true;
-            this.chkcss_base64.Checked = true;
-            this.chkcss_base64.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkcss_base64.Location = new System.Drawing.Point(241, 13);
-            this.chkcss_base64.Name = "chkcss_base64";
-            this.chkcss_base64.Size = new System.Drawing.Size(84, 16);
-            this.chkcss_base64.TabIndex = 3;
-            this.chkcss_base64.Text = "css base64";
-            this.chkcss_base64.UseVisualStyleBackColor = true;
-            // 
-            // chkjson
-            // 
-            this.chkjson.AutoSize = true;
-            this.chkjson.Checked = true;
-            this.chkjson.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkjson.Location = new System.Drawing.Point(331, 13);
-            this.chkjson.Name = "chkjson";
-            this.chkjson.Size = new System.Drawing.Size(48, 16);
-            this.chkjson.TabIndex = 4;
-            this.chkjson.Text = "json";
-            this.chkjson.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(59, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "输出：";
+            this.panel3.BackColor = System.Drawing.Color.Silver;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Location = new System.Drawing.Point(750, 15);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(2, 26);
+            this.panel3.TabIndex = 27;
             // 
             // FormMain
             // 
@@ -680,10 +710,12 @@ namespace CssSprite
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Css背景图(sprite)合并工具";
+            this.Text = "Css背景图(sprite)合并/分解工具";
             this.panelTop.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panelPhone.ResumeLayout(false);
             this.panelPhone.PerformLayout();
             this.tabControl.ResumeLayout(false);
@@ -699,8 +731,6 @@ namespace CssSprite
             this.tabPage5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -755,6 +785,8 @@ namespace CssSprite
         private System.Windows.Forms.CheckBox chksass_base64;
         private System.Windows.Forms.CheckBox chkcssless;
         private System.Windows.Forms.CheckBox chksass;
+        private System.Windows.Forms.Button btnSplitSprite;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 
